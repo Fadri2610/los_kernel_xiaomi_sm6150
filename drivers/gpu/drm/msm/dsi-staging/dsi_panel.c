@@ -3901,6 +3901,8 @@ void dsi_panel_gamma_mode_change(struct dsi_panel *panel,
 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_120HZ);
 		break;
 	case 90:
+		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
+		break;
 	case 60:
 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_60HZ);
 		break;

@@ -1145,8 +1145,12 @@ int dsi_conn_post_kickoff(struct drm_connector *connector,
 			}
 		}
 #ifdef CONFIG_MACH_XIAOMI_SWEET
-		if (adj_mode.timing.refresh_rate == 120)
-			dsi_panel_gamma_mode_change(display->panel, &adj_mode);
+		/*
+		 * A seamless/VRR switch skips bridge pre_enable and therefore
+		 * dsi_display_set_mode(), so this is the only point where the
+		 * per-refresh-rate BC setting is updated on that path.
+		 */
+		dsi_panel_gamma_mode_change(display->panel, &adj_mode);
 #endif
 
 		c_bridge->dsi_mode.dsi_mode_flags &= ~DSI_MODE_FLAG_VRR;
